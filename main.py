@@ -3,37 +3,6 @@ import numpy as np
 from tkinter import *
 from tkinter import ttk
 
-
-def command_line():
-    keep_going = "Y"
-    while keep_going == "Y":
-        # Prompt user for initial vector
-        vec_split = input("Enter your vector in the form\n    a b\n(spaces separating components): ").split(" ")
-        vec_in = mu.Vector(int(vec_split[0]), int(vec_split[1]))
-
-        # Print vector to command line and plot it
-        print("\nYour input vector is: ", vec_in.tuple, "\n")
-        # vec_in.plot()
-
-        # Prompt user for rows of matrix
-        row1 = input("Enter first row of matrix with spaces separating entries: ").split(" ")
-        row2 = input("Enter second row of matrix with spaces separating entries: ").split(" ")
-
-        # Create matrix and print it to command line
-        matrix = mu.Matrix(int(row1[0]), int(row1[1]), int(row2[0]), int(row2[1]))
-        matrix.printMatrix()
-
-        # Calculate output of the linear transformation
-        vec_out_raw = np.dot(matrix.matrix, vec_in.tuple)
-        print("\nYour output vector is: ", vec_out_raw)
-        vec_out = mu.Vector(vec_out_raw.item(0), vec_out_raw.item(1))
-
-        # Plot output vector
-        vec_out.plot("Output")
-
-        keep_going = input("Would you like to keep going? Enter Y for yes or N for no: ")
-
-
 def calculate(vec_in_x, vec_in_y, mat11, mat12, mat21, mat22, vec_out_field):
     try:
         # Create input vector
@@ -66,9 +35,6 @@ def gui():
     main_frame.columnconfigure(0, weight=1)
     main_frame.rowconfigure(0, weight=1)
 
-    # Set up widgets for I/O
-    FIELD_WIDTH = 10
-
     # text variables for numerical input and output
     vec_in_x = StringVar()
     vec_in_y = StringVar()
@@ -81,6 +47,8 @@ def gui():
     vec_out_field = StringVar()
 
     # Set up entry fields, labels, and buttons
+    FIELD_WIDTH = 10
+
     vec_in_x_entry = ttk.Entry(main_frame, width=FIELD_WIDTH, textvariable=vec_in_x)
     vec_in_x_entry.grid(column=1, row=2, sticky=(W, E))
     vec_in_y_entry = ttk.Entry(main_frame, width=FIELD_WIDTH, textvariable=vec_in_y)

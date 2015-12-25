@@ -4,13 +4,12 @@ import matplotlib.pyplot as plt
 
 class Vector():
     """
-    This class stores a vector
+    This class stores a vector and provides associated functions
     """
     def __init__(self, x, y):
         self.tuple = np.array([x, y])
 
     def plot(self, title):
-        #todo make axis lines appear
         soa = np.array([[0, 0, self.tuple[0], self.tuple[1]]])
         X, Y, U, V = zip(*soa)
 
