@@ -31,14 +31,11 @@ def command_line():
         # Plot output vector
         vec_out.plot("Output")
 
-        # todo plot initial and final vectors on same graph
-
         keep_going = input("Would you like to keep going? Enter Y for yes or N for no: ")
 
 
 def calculate(vec_in_x, vec_in_y, mat11, mat12, mat21, mat22, vec_out_field):
     try:
-        print("Hi")
         # Create input vector
         vec_in = mu.Vector(float(vec_in_x.get()), float(vec_in_y.get()))
 
@@ -111,6 +108,9 @@ def gui():
 
     for child in main_frame.winfo_children():
         child.grid_configure(padx=5, pady=5)
+
+    # Bind enter button to calculate method
+    root.bind("<Return>", lambda x: calculate(vec_in_x, vec_in_y, mat11, mat12, mat21, mat22, vec_out_field))
 
     # Set initial focus to input vector entry
     vec_in_x_entry.focus()
